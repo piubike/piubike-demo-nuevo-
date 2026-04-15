@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [view, setView] = useState("shop");
+  const [view, setView] = useState("home");
   const [selected, setSelected] = useState<any>(null);
   const [type, setType] = useState("");
   const [variant, setVariant] = useState("");
@@ -11,22 +11,23 @@ export default function Home() {
   const [fiatPercent, setFiatPercent] = useState(50);
 
   const bikes = [
-    {
-      name: "Mountain Bike",
-      desc: "Potencia y control en terrenos exigentes",
-      image: "https://via.placeholder.com/300x180",
-    },
-    {
-      name: "Gravel",
-      desc: "Versatilidad total en ruta y off-road",
-      image: "https://via.placeholder.com/300x180",
-    },
-    {
-      name: "Resilience",
-      desc: "Tecnología avanzada con chip integrado",
-      image: "https://via.placeholder.com/300x180",
-    },
-  ];
+  {
+    name: "Mountain Bike",
+    desc: "Potencia y control en terrenos exigentes",
+    image: "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+  },
+  {
+    name: "Gravel",
+    desc: "Versatilidad total en ruta y off-road",
+    image: "https://images.unsplash.com/photo-1508973379184-7517410fb0c8",
+  },
+  {
+    name: "Resilience",
+    desc: "Tecnología avanzada con chip integrado",
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+  },
+];
+  
 
   const experiences = [
     {
@@ -67,7 +68,53 @@ export default function Home() {
 
   return (
     <main className="p-6 pb-24 text-white bg-black min-h-screen">
+      <div className="mb-6">
+  <h1 className="text-lg font-bold">
+    Alvarez Bicycle
+  </h1>
+  <p className="text-xs text-zinc-500">
+    by Piubike
+  </p>
+</div>
+{/* HOME */}
+{/* HOME PREMIUM */}
+{view === "home" && (
+  <div className="relative h-[70vh] flex flex-col justify-end">
 
+    <img
+      src="https://images.unsplash.com/photo-1518655048521-f130df041f66"
+      className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+    />
+
+    <div className="relative z-10">
+      <h1 className="text-3xl font-bold mb-2">
+        Alvarez Bicycle
+      </h1>
+
+      <p className="text-zinc-300 mb-6">
+        by Piubike — Ride Beyond Limits
+      </p>
+
+      <div className="flex flex-col gap-3">
+
+  <button
+    onClick={() => setView("shop")}
+    className="bg-white text-black px-6 py-3 rounded-2xl w-full"
+  >
+    Explorar bicicletas
+  </button>
+
+  <button
+    onClick={() => setView("experiences")}
+    className="border border-white px-6 py-3 rounded-2xl w-full"
+  >
+    Ver experiencias
+  </button>
+
+</div>
+    </div>
+  </div>
+)}
       {/* SHOP */}
       {view === "shop" && (
         <>
@@ -95,6 +142,9 @@ export default function Home() {
       {view === "experiences" && (
         <>
           <h2 className="text-xl mb-4">Experiencias</h2>
+          <p className="text-zinc-400 mb-4">
+  Vive una experiencia única desde la montaña al mar con Piubike y Alvarez Bicycle
+</p>
 
           {experiences.map((exp) => (
             <div
@@ -106,9 +156,12 @@ export default function Home() {
               }}
               className="bg-zinc-900 p-4 rounded-2xl mb-4 cursor-pointer"
             >
-              <img src={exp.image} className="rounded mb-2" />
+              <img src={exp.image} className="rounded-2xl mb-2 h-40 w-full object-cover" />
               <h3>{exp.name}</h3>
               <p className="text-sm text-zinc-400">{exp.desc}</p>
+              <p className="text-xs text-zinc-500 mt-2">
+  🚴‍♂️ 10-15 días | Italia | Todo incluido
+</p>
             </div>
           ))}
         </>
@@ -179,7 +232,13 @@ export default function Home() {
 
       {/* VARIANT */}
       {view === "variantDetail" && (
-        <div className="text-center">
+  <div className="text-center">
+
+    <img src={selected?.image} className="rounded-2xl mb-4" />
+
+    <h2 className="text-2xl mb-4">
+      {selected?.name} {variant}
+    </h2>
           <h2 className="text-2xl mb-4">
             {selected?.name} {variant}
           </h2>
@@ -291,11 +350,21 @@ export default function Home() {
       )}
 
       {/* MENU */}
-      <div className="fixed bottom-0 left-0 w-full bg-black flex justify-around py-3 border-t border-zinc-800">
-        <button onClick={() => setView("shop")}>🚴</button>
-        <button onClick={() => setView("experiences")}>🌍</button>
-        <button onClick={() => setView("register")}>👤</button>
-      </div>
+<div className="fixed bottom-0 left-0 w-full bg-black flex justify-around py-3 border-t border-zinc-800 text-xs text-center">
+  
+  <button onClick={() => setView("shop")}>
+    🚴<br />BICICLETAS
+  </button>
+
+  <button onClick={() => setView("experiences")}>
+    🌍<br />EXPERIENCIAS
+  </button>
+
+  <button onClick={() => setView("register")}>
+    👤<br />PERFIL
+  </button>
+
+</div>
 
     </main>
   );
