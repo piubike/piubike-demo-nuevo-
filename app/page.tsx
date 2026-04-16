@@ -200,6 +200,36 @@ export default function Home() {
           {selected?.name === "Resilience" && (
   <button
     onClick={() => setView("resData")}
+    {view === "resResult" && (
+  <div className="text-center">
+
+    <h2 className="text-2xl mb-4">Resultado Resilience</h2>
+
+    <p className="mb-2 text-zinc-400">
+      Basado en tus datos biométricos
+    </p>
+
+    <div className="bg-zinc-900 p-4 rounded-2xl mb-4 text-left">
+      <p>Altura: {height} cm</p>
+      <p>Peso: {weight} kg</p>
+
+      <p className="mt-3 font-bold">
+        Talla recomendada: {getResilienceSize()}
+      </p>
+
+      <p className="mt-2 text-lg">
+        Precio: €5000
+      </p>
+    </div>
+
+    <button
+      onClick={() => setView("register")}
+      className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+    >
+      Continuar compra
+    </button>
+  </div>
+)}
     className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
   >
     Personalizar bicicleta
@@ -259,7 +289,6 @@ export default function Home() {
 
           <input placeholder="Altura" onChange={(e) => setHeight(e.target.value)} className="w-full mb-2 p-2 bg-zinc-900" />
           <input
-  placeholder="Altura"
   onChange={(e) => setHeight(e.target.value)}
   className="w-full mb-2 p-2 bg-zinc-900"
 />
