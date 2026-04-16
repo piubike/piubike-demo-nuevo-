@@ -326,27 +326,7 @@ export default function Home() {
       Configuración optimizada por ALA Intelligence
     </p>
 
-    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
-
-  <p className="text-sm mb-2">
-    🔓 Accede a métricas avanzadas en la app ALA
-  </p>
-
-  <p className="text-sm mb-2">
-    📊 Historial, evolución y rendimiento completo
-  </p>
-
-  <p className="text-sm">
-    🚀 Plan Pro disponible
-  </p>
-
-</div>
-
-<button
-  className="border border-white w-full py-3 rounded-2xl mb-3"
->
-  Activar ALA App
-</button>
+    
 
     <button
       onClick={() => setView("register")}
@@ -354,34 +334,6 @@ export default function Home() {
     >
       Comprar bicicleta inteligente
     </button>
-
-  </div>
-)}
-{/* APP ALA */}
-{view === "app" && (
-  <div className="text-center">
-
-    <h2 className="text-xl font-bold mb-4">
-      ALA App
-    </h2>
-
-    <p className="text-zinc-400 mb-4">
-      Telemetría avanzada en tiempo real
-    </p>
-
-    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
-      <p className="text-sm mb-2">⚡ Potencia: 285W</p>
-      <p className="text-sm mb-2">🚴 Cadencia: 92 rpm</p>
-      <p className="text-sm mb-2">🌬️ Viento: 12 km/h</p>
-      <p className="text-sm mb-2">📐 Altura sillín: 74.5 cm</p>
-      <p className="text-sm">🔩 Bielas: 172.5 mm</p>
-    </div>
-
-    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
-      <p className="text-sm mb-2">🔹 NFT activo</p>
-      <p className="text-sm mb-2">🔹 Historial completo</p>
-      <p className="text-sm">🔹 Optimización continua</p>
-    </div>
 
   </div>
 )}
