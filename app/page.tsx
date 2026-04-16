@@ -14,12 +14,12 @@ export default function Home() {
   {
     name: "Mountain Bike",
     desc: "Potencia y control en terrenos exigentes",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+    image: "https://images.unsplash.com/photo-1518655048521-f130df041f66",
   },
   {
     name: "Gravel",
     desc: "Versatilidad total en ruta y off-road",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+    image: "https://images.unsplash.com/photo-1508973379184-7517410fb0c8",
   },
   {
     name: "Resilience",
@@ -70,41 +70,48 @@ export default function Home() {
     <main className="p-6 pb-24 text-white bg-black min-h-screen">
       <div className="mb-6">
   <h1 className="text-lg font-bold">
-    ALA
+    Alvarez Bicycle
   </h1>
   <p className="text-xs text-zinc-500">
-    by Alvarez Bicycle
+    by Piubike
   </p>
 </div>
 {/* HOME */}
-{/* HOME MINIMAL */}
+{/* HOME PREMIUM */}
 {view === "home" && (
-  <div className="flex flex-col justify-center items-center h-[70vh] text-center">
+  <div className="relative h-[70vh] flex flex-col justify-end">
 
-    <h1 className="text-4xl font-bold mb-2">
-      ALA
-    </h1>
+    <img
+      src="https://images.unsplash.com/photo-1518655048521-f130df041f66"
+      className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+    />
 
-    <p className="text-zinc-500 mb-10">
-      by Alvarez Bicycle
-    </p>
+    <div className="relative z-10">
+      <h1 className="text-3xl font-bold mb-2">
+        Alvarez Bicycle
+      </h1>
 
-    <div className="flex flex-col gap-4 w-full max-w-xs">
+      <p className="text-zinc-300 mb-6">
+        by Piubike — Ride Beyond Limits
+      </p>
 
-      <button
-        onClick={() => setView("shop")}
-        className="border border-white py-3 rounded-2xl"
-      >
-        BICICLETAS
-      </button>
+      <div className="flex flex-col gap-3">
 
-      <button
-        onClick={() => setView("experiences")}
-        className="border border-white py-3 rounded-2xl"
-      >
-        EXPERIENCIAS
-      </button>
+  <button
+    onClick={() => setView("shop")}
+    className="bg-white text-black px-6 py-3 rounded-2xl w-full"
+  >
+    Explorar bicicletas
+  </button>
 
+  <button
+    onClick={() => setView("experiences")}
+    className="border border-white px-6 py-3 rounded-2xl w-full"
+  >
+    Ver experiencias
+  </button>
+
+</div>
     </div>
   </div>
 )}
@@ -190,7 +197,7 @@ export default function Home() {
 
               <button
                 onClick={() => setView("register")}
-                className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl mt-4"
+                className="bg-white text-black w-full py-3 rounded-2xl mt-4"
               >
                 Reservar
               </button>
@@ -198,13 +205,13 @@ export default function Home() {
           )}
 
           {selected?.name === "Resilience" && (
-  <button
-    onClick={() => setView("resData")}
-    className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
-  >
-    Personalizar bicicleta
-  </button>
-)}
+            <button
+              onClick={() => setView("resData")}
+              className="bg-white text-black w-full py-3 rounded-2xl"
+            >
+              Personalizar bicicleta
+            </button>
+          )}
 
           {type === "bike" && selected?.name !== "Resilience" && (
             <div className="flex gap-2 justify-center">
@@ -244,11 +251,11 @@ export default function Home() {
           </p>
 
           <button
-  onClick={() => setView("register")}
-  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
->
-  Continuar
-</button>
+            onClick={() => setView("register")}
+            className="bg-white text-black w-full py-3 rounded-2xl"
+          >
+            Continuar
+          </button>
         </div>
       )}
 
@@ -258,85 +265,38 @@ export default function Home() {
           <h2 className="mb-4">Configura tu Resilience</h2>
 
           <input placeholder="Altura" onChange={(e) => setHeight(e.target.value)} className="w-full mb-2 p-2 bg-zinc-900" />
-          <input
-  placeholder="Altura"
-  onChange={(e) => setHeight(e.target.value)}
-  className="w-full mb-2 p-2 bg-zinc-900"
-/>
+          <input placeholder="Peso" onChange={(e) => setWeight(e.target.value)} className="w-full mb-4 p-2 bg-zinc-900" />
 
-<input
-  placeholder="Peso"
-  onChange={(e) => setWeight(e.target.value)}
-  className="w-full mb-4 p-2 bg-zinc-900"
-/>
-
-<p className="text-sm text-zinc-400 mb-4">
-  Resilience es una bicicleta inteligente equipada con chip ALA.
-</p>
-
-<p className="text-xs text-zinc-500 mb-4">
-  Analiza tu rendimiento en tiempo real: potencia, cadencia, biomecánica y entorno.
-</p>
-
-<button
-  onClick={() => setView("resResult")}
-  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
->
-  Activar análisis inteligente
-</button>
+          <button onClick={() => setView("resResult")} className="bg-white text-black w-full py-3 rounded-2xl">
+            Analizar
+          </button>
         </>
       )}
 
-     {view === "resResult" && (
-  <div className="text-center">
+      {view === "resResult" && (
+        <div className="text-center">
+          <p>Talla: {getResilienceSize()}</p>
+          <p className="mb-4">€5000</p>
 
-    <h2 className="text-xl font-bold mb-4">
-      ALA Intelligence
-    </h2>
+          <button onClick={() => setView("register")} className="bg-white text-black w-full py-3 rounded-2xl">
+            Comprar
+          </button>
+        </div>
+      )}
 
-    <p className="text-zinc-400 mb-4">
-      Análisis en tiempo real completado
-    </p>
+      {/* REGISTER */}
+      {view === "register" && (
+        <>
+          <input placeholder="Nombre" className="w-full mb-2 p-2 bg-zinc-900" />
+          <input placeholder="Dirección" className="w-full mb-2 p-2 bg-zinc-900" />
+          <input placeholder="Wallet" className="w-full mb-4 p-2 bg-zinc-900" />
 
-    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
-      <p className="text-sm mb-2">⚡ Potencia estimada: 285W</p>
-      <p className="text-sm mb-2">🚴 Cadencia óptima: 92 rpm</p>
-      <p className="text-sm mb-2">🌬️ Viento: 12 km/h frontal</p>
-      <p className="text-sm mb-2">📐 Altura sillín recomendada: 74.5 cm</p>
-      <p className="text-sm">🔩 Bielas recomendadas: 172.5 mm</p>
-    </div>
+          <button onClick={() => setView("payment")} className="bg-white text-black w-full py-3 rounded-2xl">
+            Ir a pago
+          </button>
+        </>
+      )}
 
-    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
-      <p className="text-sm mb-2">
-        🔹 NFT generado con datos de rendimiento
-      </p>
-      <p className="text-sm mb-2">
-        🔹 Historial del ciclista activo
-      </p>
-      <p className="text-sm">
-        🔹 Optimización continua activada
-      </p>
-    </div>
-
-    <p className="mb-2">
-      Talla recomendada: {getResilienceSize()}
-    </p>
-
-    <p className="text-zinc-500 mb-4">
-      Configuración optimizada por ALA Intelligence
-    </p>
-
-    
-
-    <button
-      onClick={() => setView("register")}
-      className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
-    >
-      Comprar bicicleta inteligente
-    </button>
-
-  </div>
-)}
       {/* PAYMENT */}
       {view === "payment" && (
         <>
