@@ -70,48 +70,41 @@ export default function Home() {
     <main className="p-6 pb-24 text-white bg-black min-h-screen">
       <div className="mb-6">
   <h1 className="text-lg font-bold">
-    Alvarez Bicycle
+    ALA
   </h1>
   <p className="text-xs text-zinc-500">
-    by Piubike
+    by Alvarez Bicycle
   </p>
 </div>
 {/* HOME */}
-{/* HOME PREMIUM */}
+{/* HOME MINIMAL */}
 {view === "home" && (
-  <div className="relative h-[70vh] flex flex-col justify-end">
+  <div className="flex flex-col justify-center items-center h-[70vh] text-center">
 
-    <img
-      src="https://images.unsplash.com/photo-1518655048521-f130df041f66"
-      className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
-    />
+    <h1 className="text-4xl font-bold mb-2">
+      ALA
+    </h1>
 
-    <div className="relative z-10">
-      <h1 className="text-3xl font-bold mb-2">
-        Alvarez Bicycle
-      </h1>
+    <p className="text-zinc-500 mb-10">
+      by Alvarez Bicycle
+    </p>
 
-      <p className="text-zinc-300 mb-6">
-        by Piubike — Ride Beyond Limits
-      </p>
+    <div className="flex flex-col gap-4 w-full max-w-xs">
 
-      <div className="flex flex-col gap-3">
+      <button
+        onClick={() => setView("shop")}
+        className="border border-white py-3 rounded-2xl"
+      >
+        BICICLETAS
+      </button>
 
-  <button
-    onClick={() => setView("shop")}
-    className="bg-white text-black px-6 py-3 rounded-2xl w-full"
-  >
-    Explorar bicicletas
-  </button>
+      <button
+        onClick={() => setView("experiences")}
+        className="border border-white py-3 rounded-2xl"
+      >
+        EXPERIENCIAS
+      </button>
 
-  <button
-    onClick={() => setView("experiences")}
-    className="border border-white px-6 py-3 rounded-2xl w-full"
-  >
-    Ver experiencias
-  </button>
-
-</div>
     </div>
   </div>
 )}
@@ -157,10 +150,13 @@ export default function Home() {
               className="bg-zinc-900 p-4 rounded-2xl mb-4 cursor-pointer"
             >
               <img src={exp.image} className="rounded-2xl mb-2 h-40 w-full object-cover" />
-              <h3>{exp.name}</h3>
+              <h3 className="text-lg font-semibold">{exp.name}</h3>
               <p className="text-sm text-zinc-400">{exp.desc}</p>
               <p className="text-xs text-zinc-500 mt-2">
   🚴‍♂️ 10-15 días | Italia | Todo incluido
+</p>
+<p className="text-sm font-bold mt-2">
+  Desde €{exp.price}
 </p>
             </div>
           ))}
@@ -194,7 +190,7 @@ export default function Home() {
 
               <button
                 onClick={() => setView("register")}
-                className="bg-white text-black w-full py-3 rounded-2xl mt-4"
+                className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl mt-4"
               >
                 Reservar
               </button>
@@ -202,13 +198,13 @@ export default function Home() {
           )}
 
           {selected?.name === "Resilience" && (
-            <button
-              onClick={() => setView("resData")}
-              className="bg-white text-black w-full py-3 rounded-2xl"
-            >
-              Personalizar bicicleta
-            </button>
-          )}
+  <button
+    onClick={() => setView("resData")}
+    className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+  >
+    Personalizar bicicleta
+  </button>
+)}
 
           {type === "bike" && selected?.name !== "Resilience" && (
             <div className="flex gap-2 justify-center">
@@ -248,11 +244,11 @@ export default function Home() {
           </p>
 
           <button
-            onClick={() => setView("register")}
-            className="bg-white text-black w-full py-3 rounded-2xl"
-          >
-            Continuar
-          </button>
+  onClick={() => setView("register")}
+  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+>
+  Continuar
+</button>
         </div>
       )}
 
