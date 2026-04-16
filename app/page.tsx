@@ -14,12 +14,12 @@ export default function Home() {
   {
     name: "Mountain Bike",
     desc: "Potencia y control en terrenos exigentes",
-    image: "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
   },
   {
     name: "Gravel",
     desc: "Versatilidad total en ruta y off-road",
-    image: "https://images.unsplash.com/photo-1508973379184-7517410fb0c8",
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
   },
   {
     name: "Resilience",
@@ -258,38 +258,133 @@ export default function Home() {
           <h2 className="mb-4">Configura tu Resilience</h2>
 
           <input placeholder="Altura" onChange={(e) => setHeight(e.target.value)} className="w-full mb-2 p-2 bg-zinc-900" />
-          <input placeholder="Peso" onChange={(e) => setWeight(e.target.value)} className="w-full mb-4 p-2 bg-zinc-900" />
+          <input
+  placeholder="Altura"
+  onChange={(e) => setHeight(e.target.value)}
+  className="w-full mb-2 p-2 bg-zinc-900"
+/>
 
-          <button onClick={() => setView("resResult")} className="bg-white text-black w-full py-3 rounded-2xl">
-            Analizar
-          </button>
+<input
+  placeholder="Peso"
+  onChange={(e) => setWeight(e.target.value)}
+  className="w-full mb-4 p-2 bg-zinc-900"
+/>
+
+<p className="text-sm text-zinc-400 mb-4">
+  Resilience es una bicicleta inteligente equipada con chip ALA.
+</p>
+
+<p className="text-xs text-zinc-500 mb-4">
+  Analiza tu rendimiento en tiempo real: potencia, cadencia, biomecánica y entorno.
+</p>
+
+<button
+  onClick={() => setView("resResult")}
+  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+>
+  Activar análisis inteligente
+</button>
         </>
       )}
 
-      {view === "resResult" && (
-        <div className="text-center">
-          <p>Talla: {getResilienceSize()}</p>
-          <p className="mb-4">€5000</p>
+     {view === "resResult" && (
+  <div className="text-center">
 
-          <button onClick={() => setView("register")} className="bg-white text-black w-full py-3 rounded-2xl">
-            Comprar
-          </button>
-        </div>
-      )}
+    <h2 className="text-xl font-bold mb-4">
+      ALA Intelligence
+    </h2>
 
-      {/* REGISTER */}
-      {view === "register" && (
-        <>
-          <input placeholder="Nombre" className="w-full mb-2 p-2 bg-zinc-900" />
-          <input placeholder="Dirección" className="w-full mb-2 p-2 bg-zinc-900" />
-          <input placeholder="Wallet" className="w-full mb-4 p-2 bg-zinc-900" />
+    <p className="text-zinc-400 mb-4">
+      Análisis en tiempo real completado
+    </p>
 
-          <button onClick={() => setView("payment")} className="bg-white text-black w-full py-3 rounded-2xl">
-            Ir a pago
-          </button>
-        </>
-      )}
+    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
+      <p className="text-sm mb-2">⚡ Potencia estimada: 285W</p>
+      <p className="text-sm mb-2">🚴 Cadencia óptima: 92 rpm</p>
+      <p className="text-sm mb-2">🌬️ Viento: 12 km/h frontal</p>
+      <p className="text-sm mb-2">📐 Altura sillín recomendada: 74.5 cm</p>
+      <p className="text-sm">🔩 Bielas recomendadas: 172.5 mm</p>
+    </div>
 
+    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
+      <p className="text-sm mb-2">
+        🔹 NFT generado con datos de rendimiento
+      </p>
+      <p className="text-sm mb-2">
+        🔹 Historial del ciclista activo
+      </p>
+      <p className="text-sm">
+        🔹 Optimización continua activada
+      </p>
+    </div>
+
+    <p className="mb-2">
+      Talla recomendada: {getResilienceSize()}
+    </p>
+
+    <p className="text-zinc-500 mb-4">
+      Configuración optimizada por ALA Intelligence
+    </p>
+
+    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
+
+  <p className="text-sm mb-2">
+    🔓 Accede a métricas avanzadas en la app ALA
+  </p>
+
+  <p className="text-sm mb-2">
+    📊 Historial, evolución y rendimiento completo
+  </p>
+
+  <p className="text-sm">
+    🚀 Plan Pro disponible
+  </p>
+
+</div>
+
+<button
+  className="border border-white w-full py-3 rounded-2xl mb-3"
+>
+  Activar ALA App
+</button>
+
+    <button
+      onClick={() => setView("register")}
+      className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+    >
+      Comprar bicicleta inteligente
+    </button>
+
+  </div>
+)}
+{/* APP ALA */}
+{view === "app" && (
+  <div className="text-center">
+
+    <h2 className="text-xl font-bold mb-4">
+      ALA App
+    </h2>
+
+    <p className="text-zinc-400 mb-4">
+      Telemetría avanzada en tiempo real
+    </p>
+
+    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
+      <p className="text-sm mb-2">⚡ Potencia: 285W</p>
+      <p className="text-sm mb-2">🚴 Cadencia: 92 rpm</p>
+      <p className="text-sm mb-2">🌬️ Viento: 12 km/h</p>
+      <p className="text-sm mb-2">📐 Altura sillín: 74.5 cm</p>
+      <p className="text-sm">🔩 Bielas: 172.5 mm</p>
+    </div>
+
+    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
+      <p className="text-sm mb-2">🔹 NFT activo</p>
+      <p className="text-sm mb-2">🔹 Historial completo</p>
+      <p className="text-sm">🔹 Optimización continua</p>
+    </div>
+
+  </div>
+)}
       {/* PAYMENT */}
       {view === "payment" && (
         <>
