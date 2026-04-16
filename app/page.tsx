@@ -14,12 +14,12 @@ export default function Home() {
   {
     name: "Mountain Bike",
     desc: "Potencia y control en terrenos exigentes",
-    image: "https://images.unsplash.com/photo-1518655048521-f130df041f66",
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
   },
   {
     name: "Gravel",
     desc: "Versatilidad total en ruta y off-road",
-    image: "https://images.unsplash.com/photo-1508973379184-7517410fb0c8",
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
   },
   {
     name: "Resilience",
@@ -198,13 +198,13 @@ export default function Home() {
           )}
 
           {selected?.name === "Resilience" && (
-            <button
-              onClick={() => setView("resData")}
-              className="bg-white text-black w-full py-3 rounded-2xl"
-            >
-              Personalizar bicicleta
-            </button>
-          )}
+  <button
+    onClick={() => setView("resData")}
+    className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+  >
+    Personalizar bicicleta
+  </button>
+)}
 
           {type === "bike" && selected?.name !== "Resilience" && (
             <div className="flex gap-2 justify-center">
@@ -244,11 +244,11 @@ export default function Home() {
           </p>
 
           <button
-            onClick={() => setView("register")}
-            className="bg-white text-black w-full py-3 rounded-2xl"
-          >
-            Continuar
-          </button>
+  onClick={() => setView("register")}
+  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+>
+  Continuar
+</button>
         </div>
       )}
 
@@ -258,15 +258,36 @@ export default function Home() {
           <h2 className="mb-4">Configura tu Resilience</h2>
 
           <input placeholder="Altura" onChange={(e) => setHeight(e.target.value)} className="w-full mb-2 p-2 bg-zinc-900" />
-          <input placeholder="Peso" onChange={(e) => setWeight(e.target.value)} className="w-full mb-4 p-2 bg-zinc-900" />
+          <input
+  placeholder="Altura"
+  onChange={(e) => setHeight(e.target.value)}
+  className="w-full mb-2 p-2 bg-zinc-900"
+/>
 
-          <button onClick={() => setView("resResult")} className="bg-white text-black w-full py-3 rounded-2xl">
-            Analizar
-          </button>
+<input
+  placeholder="Peso"
+  onChange={(e) => setWeight(e.target.value)}
+  className="w-full mb-4 p-2 bg-zinc-900"
+/>
+
+<p className="text-sm text-zinc-400 mb-4">
+  Resilience es una bicicleta inteligente equipada con chip ALA.
+</p>
+
+<p className="text-xs text-zinc-500 mb-4">
+  Analiza tu rendimiento en tiempo real: potencia, cadencia, biomecánica y entorno.
+</p>
+
+<button
+  onClick={() => setView("resResult")}
+  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
+>
+  Activar análisis inteligente
+</button>
         </>
       )}
 
-      {view === "resResult" && (
+      {view === "RESULTADO" && (
         <div className="text-center">
           <p>Talla: {getResilienceSize()}</p>
           <p className="mb-4">€5000</p>
