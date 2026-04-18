@@ -1,4 +1,15 @@
-@import "tailwindcss";
+:root {
+  --mar-lunar: #4D5F6E;
+  --terracota: #9E5A38;
+  --titanio-indigo: #1A3A7A;
+  --olivino-mineral: #6B7A42;
+  --hierro-marte: #8B3A2F;
+  --regolito-perla: #B8B4AC;
+  --espacio-negro: #0A0E18;
+}body {
+  background: var(--espacio-negro);
+  color: var(--regolito-perla);
+}@import "tailwindcss";
 
 :root {
   --background: #ffffff;

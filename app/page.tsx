@@ -23,15 +23,15 @@ export default function Home() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 28px Arial";
-  ctx.fillText("NFT Certificate", 180, 60);
+  ctx.font = "bold 34px Arial";
+ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
 
   ctx.font = "18px Arial";
   ctx.fillText(`Modelo: ${selected?.name}`, 50, 140);
   ctx.fillText(`Talla: ${getSize()}`, 50, 180);
   ctx.fillText(`Fecha: ${new Date().toLocaleDateString()}`, 50, 220);
 
-  ctx.fillStyle = "#A44A3F";
+  ctx.fillStyle = "#1A3A7A";
   ctx.fillText("Alvarez Bicycle", 50, 300);
 
   const link = document.createElement("a");
