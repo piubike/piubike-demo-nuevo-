@@ -106,8 +106,8 @@ export default function Home() {
               🌍 Experiencias
             </button>
 
-            <button onClick={() => setView("resData")} className="bg-[#A44A3F] py-5 rounded-2xl">
-              📱 Suscripción / App
+            <button onClick={() => setView("resApp")} className="bg-[#A44A3F] py-5 rounded-2xl">
+              📱 Mi App Resilience
             </button>
 
           </div>
@@ -353,7 +353,69 @@ export default function Home() {
 
   </div>
 )}
+{/* RESILIENCE APP */}
+{view === "resApp" ? (
+  <div className="text-center">
 
+    <h2 className="text-2xl mb-4">🚴 Mi App Resilience</h2>
+
+    <div className="bg-black text-white p-4 rounded-xl mb-4 text-left">
+      <p className="text-lg font-bold mb-2">🎟 Tu NFT</p>
+
+      <p><b>Modelo:</b> {selected?.name || "ALA Bike"}</p>
+      <p><b>Talla:</b> {getSize()}</p>
+      <p><b>Fecha:</b> {new Date().toLocaleDateString()}</p>
+    </div>
+
+    <div className="grid gap-3">
+
+      <button className="bg-zinc-900 py-3 rounded-2xl">
+        🔗 Conectar chip
+      </button>
+
+      <button className="bg-zinc-900 py-3 rounded-2xl">
+        📍 Mi recorrido
+      </button>
+
+      <button
+        onClick={() => setView("resStats")}
+        className="bg-[#A44A3F] py-3 rounded-2xl"
+      >
+        📊 Resilience
+      </button>
+
+    </div>
+
+  </div>
+) : null}
+
+{/* RESILIENCE STATS */}
+{view === "resStats" && (
+  <div className="text-center">
+
+    <h2 className="text-2xl mb-4">📊 Datos Resilience</h2>
+
+    <div className="bg-zinc-900 p-4 rounded-2xl text-left">
+      <p>🚴 Velocidad: 32 km/h</p>
+      <p>🔄 Cadencia: 85 rpm</p>
+      <p>📏 Altura sillín: 74 cm</p>
+
+      <div className="mt-3 text-sm text-zinc-400">
+        👉 Recomendación:
+        <br />
+        Subir sillín +1 cm para mejor eficiencia
+      </div>
+    </div>
+
+    <button
+      onClick={() => setView("resApp")}
+      className="bg-white text-black w-full py-3 rounded-2xl mt-4"
+    >
+      Volver
+    </button>
+
+  </div>
+)}
     </main>
   );
 }
