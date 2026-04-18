@@ -6,48 +6,62 @@ export default function Home() {
   const [selected, setSelected] = useState<any>(null);
   const [type, setType] = useState("");
   const [variant, setVariant] = useState("");
+
   const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  const [inseam, setInseam] = useState("");
+
   const [fiatPercent, setFiatPercent] = useState(50);
+  const downloadNFT = () => {
+  const canvas = document.createElement("canvas");
+  canvas.width = 600;
+  canvas.height = 400;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  ctx.fillStyle = "#0a0a0a";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 28px Arial";
+  ctx.fillText("NFT Certificate", 180, 60);
+
+  ctx.font = "18px Arial";
+  ctx.fillText(`Modelo: ${selected?.name}`, 50, 140);
+  ctx.fillText(`Talla: ${getSize()}`, 50, 180);
+  ctx.fillText(`Fecha: ${new Date().toLocaleDateString()}`, 50, 220);
+
+  ctx.fillStyle = "#A44A3F";
+  ctx.fillText("Alvarez Bicycle", 50, 300);
+
+  const link = document.createElement("a");
+  link.download = "nft-certificado.png";
+  link.href = canvas.toDataURL();
+  link.click();
+};
 
   const bikes = [
-  {
-    name: "Mountain Bike",
-    desc: "Potencia y control en terrenos exigentes",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
-  },
-  {
-    name: "Gravel",
-    desc: "Versatilidad total en ruta y off-road",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
-  },
-  {
-    name: "Resilience",
-    desc: "Tecnología avanzada con chip integrado",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
-  },
-];
-  
+    {
+      name: "Mountain Bike",
+      desc: "Potencia y control en terrenos exigentes",
+      image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+    },
+    {
+      name: "Gravel",
+      desc: "Versatilidad total en ruta y off-road",
+      image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+    },
+    {
+      name: "Resilience",
+      desc: "Tecnología avanzada con chip integrado",
+      image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+    },
+  ];
 
   const experiences = [
-    {
-      name: "Dolomitas",
-      desc: "Rutas épicas en Italia",
-      image: "https://via.placeholder.com/300x180",
-      price: 1200,
-    },
-    {
-      name: "Santiago Compostela",
-      desc: "Una travesía única",
-      image: "https://via.placeholder.com/300x180",
-      price: 900,
-    },
-    {
-      name: "Atacama",
-      desc: "Aventura en el desierto",
-      image: "https://via.placeholder.com/300x180",
-      price: 1000,
-    },
+    { name: "Dolomitas", desc: "Rutas épicas en Italia", image: "https://via.placeholder.com/300x180", price: 1200 },
+    { name: "Santiago Compostela", desc: "Una travesía única", image: "https://via.placeholder.com/300x180", price: 900 },
+    { name: "Atacama", desc: "Aventura en el desierto", image: "https://via.placeholder.com/300x180", price: 1000 },
   ];
 
   const getPrice = () => {
@@ -60,54 +74,46 @@ export default function Home() {
   const fiatAmount = (total * fiatPercent) / 100;
   const cryptoAmount = total - fiatAmount;
 
-  const getResilienceSize = () => {
-    if (Number(height) > 180) return "L";
-    if (Number(height) > 170) return "M";
+  // 🚴 BIKE FITTING REAL (aproximación estándar industria)
+  const getSize = () => {
+    const h = Number(height);
+    const i = Number(inseam);
+
+    const score = h * 0.4 + i * 0.6;
+
+    if (score >= 165) return "L";
+    if (score >= 155) return "M";
     return "S";
   };
 
   return (
     <main className="p-6 pb-24 text-white bg-black min-h-screen">
-      <div className="mb-6">
-  <h1 className="text-lg font-bold">
-    ALA
-  </h1>
-  <p className="text-xs text-zinc-500">
-    by Alvarez Bicycle
-  </p>
-</div>
-{/* HOME */}
-{/* HOME MINIMAL */}
-{view === "home" && (
-  <div className="flex flex-col justify-center items-center h-[70vh] text-center">
 
-    <h1 className="text-4xl font-bold mb-2">
-      ALA
-    </h1>
+      {/* HOME */}
+      {view === "home" && (
+        <div className="flex flex-col justify-center items-center h-[80vh] text-center">
 
-    <p className="text-zinc-500 mb-10">
-      by Alvarez Bicycle
-    </p>
+          <h1 className="text-4xl font-bold mb-2">ALA</h1>
+          <p className="text-zinc-500 mb-10">by Alvarez Bicycle</p>
 
-    <div className="flex flex-col gap-4 w-full max-w-xs">
+          <div className="grid gap-4 w-full max-w-sm">
 
-      <button
-        onClick={() => setView("shop")}
-        className="border border-white py-3 rounded-2xl"
-      >
-        BICICLETAS
-      </button>
+            <button onClick={() => setView("shop")} className="bg-zinc-900 py-5 rounded-2xl">
+              🚴 Bicicletas
+            </button>
 
-      <button
-        onClick={() => setView("experiences")}
-        className="border border-white py-3 rounded-2xl"
-      >
-        EXPERIENCIAS
-      </button>
+            <button onClick={() => setView("experiences")} className="bg-zinc-900 py-5 rounded-2xl">
+              🌍 Experiencias
+            </button>
 
-    </div>
-  </div>
-)}
+            <button onClick={() => setView("resData")} className="bg-[#A44A3F] py-5 rounded-2xl">
+              📱 Suscripción / App
+            </button>
+
+          </div>
+        </div>
+      )}
+
       {/* SHOP */}
       {view === "shop" && (
         <>
@@ -121,7 +127,7 @@ export default function Home() {
                 setType("bike");
                 setView("detail");
               }}
-              className="bg-zinc-900 p-4 rounded-2xl mb-4 cursor-pointer"
+              className="bg-zinc-900 p-4 rounded-2xl mb-4"
             >
               <img src={bike.image} className="rounded mb-2" />
               <h3>{bike.name}</h3>
@@ -135,9 +141,6 @@ export default function Home() {
       {view === "experiences" && (
         <>
           <h2 className="text-xl mb-4">Experiencias</h2>
-          <p className="text-zinc-400 mb-4">
-  Vive una experiencia única desde la montaña al mar con Piubike y Alvarez Bicycle
-</p>
 
           {experiences.map((exp) => (
             <div
@@ -147,17 +150,12 @@ export default function Home() {
                 setType("exp");
                 setView("detail");
               }}
-              className="bg-zinc-900 p-4 rounded-2xl mb-4 cursor-pointer"
+              className="bg-zinc-900 p-4 rounded-2xl mb-4"
             >
-              <img src={exp.image} className="rounded-2xl mb-2 h-40 w-full object-cover" />
-              <h3 className="text-lg font-semibold">{exp.name}</h3>
-              <p className="text-sm text-zinc-400">{exp.desc}</p>
-              <p className="text-xs text-zinc-500 mt-2">
-  🚴‍♂️ 10-15 días | Italia | Todo incluido
-</p>
-<p className="text-sm font-bold mt-2">
-  Desde €{exp.price}
-</p>
+              <img src={exp.image} className="rounded mb-2" />
+              <h3>{exp.name}</h3>
+              <p>{exp.desc}</p>
+              <p className="text-sm font-bold">€{exp.price}</p>
             </div>
           ))}
         </>
@@ -166,178 +164,123 @@ export default function Home() {
       {/* DETAIL */}
       {view === "detail" && (
         <div className="text-center">
-          <img src={selected?.image} className="rounded-2xl mb-4" />
 
-          <h2 className="text-3xl font-bold mb-2">
-            {selected?.name}
-          </h2>
+          <img src={selected?.image} className="rounded mb-4" />
 
-          <p className="text-zinc-400 mb-4">
-            {selected?.desc}
-          </p>
+          <h2 className="text-2xl mb-2">{selected?.name}</h2>
+          <p className="text-zinc-400 mb-4">{selected?.desc}</p>
 
-          {type === "exp" && (
-            <div className="bg-zinc-900 p-5 rounded-2xl mb-4 text-left">
-              <p className="mb-3 font-semibold">Incluye:</p>
-              <p>✔ Tricota</p>
-              <p>✔ Alojamiento</p>
-              <p>✔ Cenas</p>
-              <p>✔ Van apoyo</p>
-
-              <p className="text-xl font-bold mt-4">
-                €{selected?.price}
-              </p>
-
-              <button
-                onClick={() => setView("register")}
-                className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl mt-4"
-              >
-                Reservar
-              </button>
-            </div>
+          {/* RESILIENCE ENTRY */}
+          {selected?.name === "Resilience" && (
+            <button
+              onClick={() => setView("resData")}
+              className="bg-[#A44A3F] w-full py-3 rounded-2xl"
+            >
+              TU ALA BICYCLE
+            </button>
           )}
 
-          {selected?.name === "Resilience" && (
-  <button
-    onClick={() => setView("resData")}
-    {view === "resResult" && (
-  <div className="text-center">
+          {/* EXPERIENCE */}
+          {type === "exp" && (
+            <button
+              onClick={() => setView("register")}
+              className="bg-[#A44A3F] w-full py-3 rounded-2xl"
+            >
+              Reservar
+            </button>
+          )}
 
-    <h2 className="text-2xl mb-4">Resultado Resilience</h2>
-
-    <p className="mb-2 text-zinc-400">
-      Basado en tus datos biométricos
-    </p>
-
-    <div className="bg-zinc-900 p-4 rounded-2xl mb-4 text-left">
-      <p>Altura: {height} cm</p>
-      <p>Peso: {weight} kg</p>
-
-      <p className="mt-3 font-bold">
-        Talla recomendada: {getResilienceSize()}
-      </p>
-
-      <p className="mt-2 text-lg">
-        Precio: €5000
-      </p>
-    </div>
-
-    <button
-      onClick={() => setView("register")}
-      className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
-    >
-      Continuar compra
-    </button>
-  </div>
-)}
-    className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
-  >
-    Personalizar bicicleta
-  </button>
-)}
-
+          {/* BIKE VARIANTS */}
           {type === "bike" && selected?.name !== "Resilience" && (
-            <div className="flex gap-2 justify-center">
-              <button
-                onClick={() => { setVariant("Race"); setView("variantDetail"); }}
-                className="bg-zinc-800 px-4 py-2 rounded-2xl"
-              >
-                Race (€3000)
-              </button>
-
-              <button
-                onClick={() => { setVariant("Team"); setView("variantDetail"); }}
-                className="bg-zinc-800 px-4 py-2 rounded-2xl"
-              >
-                Team (€4000)
-              </button>
+            <div className="flex gap-2 justify-center mt-4">
+              <button onClick={() => { setVariant("Race"); setView("variantDetail"); }}>Race</button>
+              <button onClick={() => { setVariant("Team"); setView("variantDetail"); }}>Team</button>
             </div>
           )}
         </div>
       )}
 
-      {/* VARIANT */}
-      {view === "variantDetail" && (
-  <div className="text-center">
+      {/* RES DATA */}
+      {view === "resData" && (
+        <div className="text-center">
 
-    <img src={selected?.image} className="rounded-2xl mb-4" />
+          <h2 className="text-xl mb-4">Bike Fitting Inteligente</h2>
 
-    <h2 className="text-2xl mb-4">
-      {selected?.name} {variant}
-    </h2>
-          <h2 className="text-2xl mb-4">
-            {selected?.name} {variant}
-          </h2>
+          <input
+            placeholder="Estatura (cm)"
+            onChange={(e) => setHeight(e.target.value)}
+            className="w-full mb-2 p-2 bg-zinc-900"
+          />
 
-          <p className="text-xl mb-4">
-            €{getPrice()}
+          <input
+            placeholder="Largo de pierna (cm)"
+            onChange={(e) => setInseam(e.target.value)}
+            className="w-full mb-4 p-2 bg-zinc-900"
+          />
+
+          <p className="mb-3">
+            Talla sugerida:
+            <span className="font-bold ml-2">{getSize()}</span>
           </p>
 
           <button
-  onClick={() => setView("register")}
-  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
->
-  Continuar
-</button>
+            onClick={() => setView("bikeCatalog")}
+            className="bg-[#A44A3F] w-full py-3 rounded-2xl"
+          >
+            Ver bicicletas 
+          </button>
+
         </div>
       )}
 
-      {/* RESILIENCE */}
-      {view === "resData" && (
-        <>
-          <h2 className="mb-4">Configura tu Resilience</h2>
+      {/* CATALOG */}
+      {view === "bikeCatalog" && (
+        <div>
 
-          <input placeholder="Altura" onChange={(e) => setHeight(e.target.value)} className="w-full mb-2 p-2 bg-zinc-900" />
-          <input
-  onChange={(e) => setHeight(e.target.value)}
-  className="w-full mb-2 p-2 bg-zinc-900"
-/>
+          <h2 className="mb-4">Bicicletas para talla {getSize()}</h2>
 
-<input
-  placeholder="Peso"
-  onChange={(e) => setWeight(e.target.value)}
-  className="w-full mb-4 p-2 bg-zinc-900"
-/>
+          {[
+  {
+    name: "ALA MTB Pro",
+    price: 3200,
+    image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182",
+  },
+  {
+    name: "ALA Gravel X",
+    price: 3800,
+    image: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8",
+  },
+  {
+    name: "ALA Resilience AI",
+    price: 5000,
+    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e",
+  },
+].map((bike) => (
+  <div key={bike.name} className="bg-zinc-900 p-4 rounded-2xl mb-3">
 
-<p className="text-sm text-zinc-400 mb-4">
-  Resilience es una bicicleta inteligente equipada con chip ALA.
-</p>
+    <img
+      src={bike.image}
+      className="rounded-xl mb-3 h-40 w-full object-cover"
+    />
 
-<p className="text-xs text-zinc-500 mb-4">
-  Analiza tu rendimiento en tiempo real: potencia, cadencia, biomecánica y entorno.
-</p>
+    <h3 className="font-bold">{bike.name}</h3>
 
-<button
-  onClick={() => setView("resResult")}
-  className="bg-[#A44A3F] text-white w-full py-3 rounded-2xl"
->
-  Activar análisis inteligente
-</button>
-        </>
-      )}
+    <p className="text-sm text-zinc-400">
+      Ajustada a talla {getSize()}
+    </p>
 
-      {view === "RESULTADO" && (
-        <div className="text-center">
-          <p>Talla: {getResilienceSize()}</p>
-          <p className="mb-4">€5000</p>
+    <p className="font-bold">€{bike.price}</p>
 
-          <button onClick={() => setView("register")} className="bg-white text-black w-full py-3 rounded-2xl">
-            Comprar
-          </button>
+    <button
+      onClick={() => setView("payment")}
+      className="bg-white text-black w-full py-2 rounded-xl mt-2"
+    >
+      Comprar
+    </button>
+
+  </div>
+))}
         </div>
-      )}
-
-      {/* REGISTER */}
-      {view === "register" && (
-        <>
-          <input placeholder="Nombre" className="w-full mb-2 p-2 bg-zinc-900" />
-          <input placeholder="Dirección" className="w-full mb-2 p-2 bg-zinc-900" />
-          <input placeholder="Wallet" className="w-full mb-4 p-2 bg-zinc-900" />
-
-          <button onClick={() => setView("payment")} className="bg-white text-black w-full py-3 rounded-2xl">
-            Ir a pago
-          </button>
-        </>
       )}
 
       {/* PAYMENT */}
@@ -374,43 +317,42 @@ export default function Home() {
         </>
       )}
 
-      {/* FINAL */}
+      {/* FINAL NFT */}
       {view === "experience" && (
-        <div className="text-center mt-10">
+        <div className="text-center">
           <h2 className="text-3xl mb-4">🚴 Experiencia activada</h2>
 
-          <p>{selected?.name}</p>
+          <div className="text-center">
+  <h2 className="text-3xl mb-4">🚴 Compra realizada</h2>
 
-          {type === "bike" && (
-            <div className="bg-purple-600 p-4 rounded-2xl mt-4">
-              🎟 NFT generado
-            </div>
-          )}
+  {type === "bike" && (
+    <div className="bg-zinc-900 p-4 rounded-2xl mt-4">
 
-          {type === "exp" && (
-            <div className="bg-zinc-900 p-4 rounded-2xl mt-4">
-              ✔ Reserva confirmada
-            </div>
-          )}
+      <div className="bg-black text-white p-4 rounded-xl mb-4 text-left">
+        <p className="text-lg font-bold mb-2">🎟 Certificado NFT</p>
+
+        <p><b>Modelo:</b> {selected?.name}</p>
+        <p><b>Talla:</b> {getSize()}</p>
+        <p><b>Fecha:</b> {new Date().toLocaleDateString()}</p>
+
+        <div className="mt-3 text-center text-sm text-zinc-400">
+          NFT generado (preview)
         </div>
-      )}
+      </div>
 
-      {/* MENU */}
-<div className="fixed bottom-0 left-0 w-full bg-black flex justify-around py-3 border-t border-zinc-800 text-xs text-center">
-  
-  <button onClick={() => setView("shop")}>
-    🚴<br />BICICLETAS
-  </button>
+      <button
+        onClick={downloadNFT}
+        className="bg-white text-black w-full py-2 rounded-xl"
+      >
+        Descargar certificado NFT
+      </button>
 
-  <button onClick={() => setView("experiences")}>
-    🌍<br />EXPERIENCIAS
-  </button>
-
-  <button onClick={() => setView("register")}>
-    👤<br />PERFIL
-  </button>
-
+    </div>
+  )}
 </div>
+
+  </div>
+)}
 
     </main>
   );
