@@ -88,16 +88,49 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
 
   return (
     <main className="p-6 pb-24 text-white bg-black min-h-screen">
+         {view === "login" && (
+  <div className="flex flex-col justify-center items-center h-[80vh] text-center">
 
+    <h2 className="text-2xl mb-6">🔐 Iniciar sesión</h2>
+
+    <input
+      placeholder="tu@email.com"
+      className="w-full max-w-sm p-3 mb-4 bg-zinc-900 rounded-xl"
+    />
+
+    <button
+      className="bg-[var(--titanio-indigo)] w-full max-w-sm py-3 rounded-2xl"
+    >
+      Entrar
+    </button>
+
+    <button
+      onClick={() => setView("home")}
+      className="mt-4 text-sm text-zinc-400"
+    >
+      Volver
+    </button>
+
+  </div>
+)}
+<h1 style={{ color: "red", fontSize: "40px" }}>
+      
+      </h1>
       {/* HOME */}
       {view === "home" && (
+     
         <div className="flex flex-col justify-center items-center h-[80vh] text-center">
 
           <h1 className="text-4xl font-bold mb-2">ALA</h1>
           <p className="text-zinc-500 mb-10">by Alvarez Bicycle</p>
 
           <div className="grid gap-4 w-full max-w-sm">
-
+<button
+  onClick={() => setView("login")}
+  className="bg-[var(--titanio-indigo)] w-full py-3 rounded-2xl mb-4"
+>
+  🔐 Iniciar sesión
+</button>
             <button onClick={() => setView("shop")} className="bg-zinc-900 py-5 rounded-2xl">
               🚴 Bicicletas
             </button>
@@ -286,14 +319,22 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
       {/* PAYMENT */}
       {view === "payment" && (
         <>
-          <p>Total €{total}</p>
+          {view === "payment" && type === "pro" ? (
+  <p>Suscripción Resilience PRO — €9.99 / mes</p>
+) : (
+  <p>Total €{total}</p>
+)}
 
           <p>💳 Tarjeta (Stripe)</p>
 
-          <p>💰 Cripto ALA</p>
-          <button className="bg-purple-500 w-full py-2 rounded">
-            Conectar Wallet
-          </button>
+          {type !== "pro" && (
+  <>
+    <p>💰 Cripto ALA</p>
+    <button className="bg-purple-500 w-full py-2 rounded">
+      Conectar Wallet
+    </button>
+  </>
+)}
 
           <p>Pago híbrido</p>
           <p>Fiat: €{fiatAmount}</p>
@@ -385,6 +426,12 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
       </button>
 
     </div>
+    <button
+  onClick={() => setView("pro")}
+  className="bg-[var(--terracota)] py-3 rounded-2xl mt-8"
+>
+  🚀 Activar Resilience PRO
+</button>
 
   </div>
 ) : null}
@@ -410,6 +457,42 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
     <button
       onClick={() => setView("resApp")}
       className="bg-white text-black w-full py-3 rounded-2xl mt-4"
+    >
+      Volver
+    </button>
+
+  </div>
+)}
+{view === "pro" && (
+  <div className="text-center">
+
+    <h2 className="text-2xl mb-4">🚀 Resilience PRO</h2>
+
+    <div className="bg-zinc-900 p-4 rounded-2xl text-left mb-4">
+
+      <p className="mb-2">📊 Historial completo de rendimiento</p>
+      <p className="mb-2">📈 Evolución y métricas avanzadas</p>
+      <p className="mb-2">🤖 Recomendaciones inteligentes</p>
+      <p className="mb-2">🚴 Optimización de bike fitting</p>
+      <p className="mb-2">☁️ Datos guardados en la nube</p>
+
+    </div>
+
+    <p className="text-xl font-bold mb-4">€9.99 / mes</p>
+
+    <button
+  onClick={() => {
+  setType("pro");
+  setView("payment");
+}}
+  className="bg-[var(--titanio-indigo)] w-full py-3 rounded-2xl"
+>
+  Activar suscripción
+</button>
+
+    <button
+      onClick={() => setView("resApp")}
+      className="mt-4 text-sm text-zinc-400"
     >
       Volver
     </button>
