@@ -87,8 +87,7 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
   };
 
   return (
-    <main className="p-6 pb-24 text-white bg-black min-h-screen transition-opacity duration-300">
-      <div key={view} className="animate-fade"></div>
+    <main className="p-6 pb-24 text-white bg-black min-h-screen">
          {view === "login" && (
   <div className="flex flex-col justify-center items-center h-[80vh] text-center">
 
@@ -509,6 +508,6 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
 
   </div>
 )}
-     </div>
-  </main>
-);
+    </main>
+  );
+}
