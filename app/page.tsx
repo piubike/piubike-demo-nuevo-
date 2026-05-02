@@ -87,7 +87,8 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
   };
 
   return (
-    <main className="p-6 pb-24 text-white bg-black min-h-screen">
+    <main className="p-6 pb-24 text-white bg-black min-h-screen transition-opacity duration-300">
+      <div key={view} className="animate-fade"></div>
          {view === "login" && (
   <div className="flex flex-col justify-center items-center h-[80vh] text-center">
 
@@ -148,6 +149,12 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
       )}
 
       {/* SHOP */}
+      <button
+  onClick={() => setView("home")}
+  className="mb-4 text-sm text-zinc-400"
+>
+  ← Volver
+</button>
       {view === "shop" && (
         <>
           <h2 className="text-xl mb-4">Bicicletas</h2>
@@ -215,13 +222,16 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
 
           {/* EXPERIENCE */}
           {type === "exp" && (
-            <button
-              onClick={() => setView("register")}
-              className="bg-[#A44A3F] w-full py-3 rounded-2xl"
-            >
-              Reservar
-            </button>
-          )}
+  <button
+    onClick={() => {
+      setType("exp");
+      setView("payment");
+    }}
+    className="bg-[#A44A3F] w-full py-3 rounded-2xl"
+  >
+    Reservar
+  </button>
+)}
 
           {/* BIKE VARIANTS */}
           {type === "bike" && selected?.name !== "Resilience" && (
@@ -499,6 +509,6 @@ ctx.fillText("ALA • Resilience Certificate", canvas.width / 2, 60);
 
   </div>
 )}
-    </main>
-  );
-}
+     </div>
+  </main>
+);
